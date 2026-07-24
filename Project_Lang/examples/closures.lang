@@ -1,0 +1,15 @@
+# Closures — a function returned from another function still remembers
+# the variables from its enclosing scope.
+func make_counter() {
+    let count = 0;
+    func increment() {
+        count = count + 1;
+        return count;
+    }
+    return increment;
+}
+
+let counter = make_counter();
+print(counter());
+print(counter());
+print(counter());

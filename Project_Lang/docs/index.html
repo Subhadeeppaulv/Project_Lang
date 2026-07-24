@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Lang — a small language, built from scratch</title>
+<meta name="description" content="Project Lang is a hand-built, tree-walking interpreted programming language. Download it, read the docs, and hack on the source.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='75' x='10' font-size='80' font-family='Georgia' fill='%231E3F9C'%3EL%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Project Lang</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="#quickstart">Download</a></li>
+      <li><a href="https://github.com/Subhadeeppaulv/Project_Lang" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="downloads/project-lang.zip" class="nav-cta">Get Lang</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============================================================ HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">v0.1.0 · MIT licensed · single-file interpreter</span>
+      <h1>Project<br>Lang</h1>
+      <p class="hero-sub">
+        A small interpreted language, hand-built from a lexer up — for learning how
+        languages actually work, and for you to read, break, and extend.
+      </p>
+      <div class="btn-row">
+        <a href="downloads/project-lang.zip" class="btn btn-primary">⬇ Download Lang</a>
+        <a href="docs.html" class="btn btn-secondary">Read the docs</a>
+      </div>
+    </div>
+
+    <div class="code-card">
+      <div class="card-title">fizzbuzz.lang</div>
+      <pre><span class="prompt">$</span> lang fizzbuzz.lang
+<span class="out">1
+2
+<span class="fizz">Fizz</span>
+4
+Buzz
+<span class="fizz">Fizz</span>
+7
+8
+<span class="fizz">Fizz</span>
+Buzz</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <span class="section-label">What's actually in the box</span>
+    <h2>Not a wrapper. A real interpreter.</h2>
+    <p class="section-intro">
+      Lang isn't Python with a new file extension — it's a lexer, a recursive-descent
+      parser, and a tree-walking evaluator, written from scratch so every part of it
+      is readable in an afternoon.
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">Aa</div>
+        <h3>A real pipeline</h3>
+        <p>Source text → tokens → AST → evaluated. No cheating by shelling out to another language.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">ƒ</div>
+        <h3>Functions that close</h3>
+        <p>Functions capture their defining scope properly — closures and counters work the way you'd expect.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">{ }</div>
+        <h3>One dict, one syntax</h3>
+        <p>Every keyword is defined in a single dictionary. Rename <code>let</code> to <code>var</code> in one line.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⬢</div>
+        <h3>Open, hackable, yours</h3>
+        <p>MIT licensed, pip-installable, and small enough to actually read start to finish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ QUICKSTART -->
+<section class="section section-alt" id="quickstart">
+  <div class="container">
+    <span class="section-label">Get running</span>
+    <h2>Four steps to your first program</h2>
+    <p class="section-intro">
+      No dependencies beyond Python 3.8+. Clone it, install it, run it.
+    </p>
+
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num"></span>
+        <div>
+          Download and unzip the source
+          <pre><code>unzip project-lang.zip
+cd Project_Lang</code></pre>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-num"></span>
+        <div>
+          Install it as an editable package
+          <pre><code>pip install -e .</code></pre>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-num"></span>
+        <div>
+          Run one of the bundled examples
+          <pre><code>lang examples/fizzbuzz.lang</code></pre>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-num"></span>
+        <div>
+          Or drop straight into the REPL
+          <pre><code>lang</code></pre>
+        </div>
+      </li>
+    </ol>
+
+    <div class="btn-row">
+      <a href="downloads/project-lang.zip" class="btn btn-primary">⬇ Download project-lang.zip</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SYNTAX TASTE -->
+<section class="section" id="syntax">
+  <div class="container">
+    <span class="section-label">A taste of the syntax</span>
+    <h2>Reads the way it runs</h2>
+    <p class="section-intro">
+      Braces for blocks, semicolons for statements, parens around conditions. Nothing
+      hidden, nothing inferred.
+    </p>
+
+    <div class="snippet-grid">
+      <div>
+        <div class="snippet-label">Conditionals</div>
+        <pre><code>let grade = 85;
+
+if (grade &gt;= 90) {
+    print("A");
+} elif (grade &gt;= 80) {
+    print("B");
+} else {
+    print("C or below");
+}
+<span style="color:#8FD6A8">// B</span></code></pre>
+      </div>
+      <div>
+        <div class="snippet-label">Closures</div>
+        <pre><code>func make_counter() {
+    let count = 0;
+    func increment() {
+        count = count + 1;
+        return count;
+    }
+    return increment;
+}
+
+let counter = make_counter();
+print(counter());
+print(counter());
+<span style="color:#8FD6A8">// 1
+// 2</span></code></pre>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <a href="docs.html" class="btn btn-secondary">See the full language guide →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-logo">Project Lang</div>
+      <p class="footer-tag">A small language, built from scratch, for anyone who wants
+        to see how the pieces fit together.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="docs.html">Documentation</a></li>
+          <li><a href="downloads/project-lang.zip">Download</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://github.com/Subhadeeppaulv/Project_Lang" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/Subhadeeppaulv/Project_Lang/issues" target="_blank" rel="noopener">Report an issue</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 Subhadeep Paul. Released under the MIT License.<br>
+    Built by Subhadeep Paul, with development assistance from Claude (Anthropic).
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

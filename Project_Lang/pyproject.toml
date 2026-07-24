@@ -1,0 +1,23 @@
+[project]
+name = "lang-language"
+version = "0.1.0"
+description = "Lang — a small, hackable, tree-walking interpreted programming language."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Subhadeep Paul" }]
+
+[project.urls]
+Homepage = "https://github.com/Subhadeeppaulv/Project_Lang"
+Documentation = "https://subhadeeppaulv.github.io/Project_Lang/"
+Repository = "https://github.com/Subhadeeppaulv/Project_Lang"
+
+[project.scripts]
+lang = "lang.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["lang*"]

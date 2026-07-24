@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation — Project Lang</title>
+<meta name="description" content="Complete language reference for Project Lang: syntax, built-in functions, and worked examples.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='75' x='10' font-size='80' font-family='Georgia' fill='%231E3F9C'%3EL%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Project Lang</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="docs.html" class="active">Docs</a></li>
+      <li><a href="index.html#quickstart">Download</a></li>
+      <li><a href="https://github.com/Subhadeeppaulv/Project_Lang" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="downloads/project-lang.zip" class="nav-cta">Get Lang</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="docs-layout">
+
+  <!-- ============================================================ SIDEBAR -->
+  <nav class="docs-sidebar" aria-label="Documentation contents">
+    <h4>Getting started</h4>
+    <ul>
+      <li><a href="#basics">The absolute basics</a></li>
+      <li><a href="#comments">Comments</a></li>
+    </ul>
+    <h4>The language</h4>
+    <ul>
+      <li><a href="#variables">Variables &amp; types</a></li>
+      <li><a href="#operators">Operators</a></li>
+      <li><a href="#printing">Printing</a></li>
+      <li><a href="#builtins">Built-in functions</a></li>
+    </ul>
+    <h4>Control flow</h4>
+    <ul>
+      <li><a href="#conditionals">Conditionals</a></li>
+      <li><a href="#loops">Loops</a></li>
+    </ul>
+    <h4>Functions</h4>
+    <ul>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#closures">Closures</a></li>
+      <li><a href="#scope">Scope</a></li>
+    </ul>
+    <h4>Reference</h4>
+    <ul>
+      <li><a href="#examples">Full example programs</a></li>
+      <li><a href="#errors">Common errors</a></li>
+      <li><a href="#keywords">Keyword reference</a></li>
+      <li><a href="#not-supported">Not yet supported</a></li>
+      <li><a href="#cheatsheet">Cheat sheet</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================ CONTENT -->
+  <main class="docs-content">
+    <button class="mobile-docs-toggle" aria-expanded="false">Contents ▼</button>
+
+    <h1>Documentation</h1>
+    <p class="lede">
+      A complete guide to writing programs in Lang: syntax, built-in functions, and
+      plenty of worked examples.
+    </p>
+
+    <!-- ================================================= BASICS -->
+    <section class="doc-section" id="basics">
+      <h2>1. The absolute basics</h2>
+      <p>Three rules govern every Lang program:</p>
+      <ol>
+        <li>Every statement ends in a semicolon <code>;</code></li>
+        <li>Every block of code is wrapped in curly braces <code>{ }</code></li>
+        <li>Every condition (in <code>if</code>, <code>elif</code>, <code>while</code>) is wrapped in parentheses <code>( )</code></li>
+      </ol>
+      <pre><code>let x = 5;
+if (x &gt; 0) {
+    print("positive");
+}</code></pre>
+      <p>Run a file with:</p>
+      <pre><code>lang myfile.lang</code></pre>
+    </section>
+
+    <!-- ================================================= COMMENTS -->
+    <section class="doc-section" id="comments">
+      <h2>2. Comments</h2>
+      <p>Anything after <code>#</code> on a line is ignored:</p>
+      <pre><code># This is a comment
+let x = 5;  # this is also a comment</code></pre>
+    </section>
+
+    <!-- ================================================= VARIABLES -->
+    <section class="doc-section" id="variables">
+      <h2>3. Variables</h2>
+      <p>Declare a variable with <code>let</code>. Reassign it later with just <code>=</code> (no <code>let</code> the second time).</p>
+      <pre><code>let name = "Alice";
+let age = 30;
+
+age = 31;              # reassignment
+print(name, age);      # Alice 31</code></pre>
+
+      <h3>Data types</h3>
+      <table class="doc-table">
+        <thead><tr><th>Type</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>Number</td><td><code>42</code>, <code>3.14</code>, <code>-7</code></td></tr>
+          <tr><td>String</td><td><code>"hello"</code>, <code>"line\nbreak"</code></td></tr>
+          <tr><td>Boolean</td><td><code>true</code>, <code>false</code></td></tr>
+          <tr><td>Nil</td><td><code>nil</code> (represents "nothing")</td></tr>
+        </tbody>
+      </table>
+      <p>String escape sequences: <code>\n</code> (newline), <code>\t</code> (tab), <code>\"</code> (quote), <code>\\</code> (backslash).</p>
+    </section>
+
+    <!-- ================================================= OPERATORS -->
+    <section class="doc-section" id="operators">
+      <h2>4. Operators</h2>
+
+      <h3>Arithmetic</h3>
+      <pre><code>print(5 + 3);   # 8
+print(5 - 3);   # 2
+print(5 * 3);   # 15
+print(5 / 3);   # 1.6666666666666667
+print(5 % 3);   # 2  (remainder)</code></pre>
+
+      <h3>Comparison</h3>
+      <p>All comparison operators return <code>true</code> or <code>false</code>.</p>
+      <pre><code>print(5 &gt; 3);    # true
+print(5 &lt; 3);    # false
+print(5 &gt;= 5);   # true
+print(5 &lt;= 4);   # false
+print(5 == 5);   # true
+print(5 != 3);   # true</code></pre>
+
+      <h3>Logical</h3>
+      <pre><code>print(true and false);   # false
+print(true or false);    # true
+print(not true);         # false</code></pre>
+
+      <h3>String concatenation</h3>
+      <p><code>+</code> joins strings, and automatically converts numbers to strings:</p>
+      <pre><code>let name = "World";
+print("Hello, " + name + "!");     # Hello, World!
+print("Score: " + 42);             # Score: 42</code></pre>
+    </section>
+
+    <!-- ================================================= PRINTING -->
+    <section class="doc-section" id="printing">
+      <h2>5. Printing / output</h2>
+      <p><code>print</code> takes any number of arguments, separated by commas, and prints them space-separated:</p>
+      <pre><code>print("x =", 5);          # x = 5
+print(1, 2, 3);           # 1 2 3
+print("just one thing");  # just one thing</code></pre>
+    </section>
+
+    <!-- ================================================= BUILTINS -->
+    <section class="doc-section" id="builtins">
+      <h2>6. Built-in functions</h2>
+      <table class="doc-table">
+        <thead><tr><th>Function</th><th>What it does</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><code>print(...)</code></td><td>Prints values, space-separated</td><td><code>print("hi", 5);</code></td></tr>
+          <tr><td><code>len(x)</code></td><td>Length of a string</td><td><code>len("hello")</code> → <code>5</code></td></tr>
+          <tr><td><code>str(x)</code></td><td>Converts a value to a string</td><td><code>str(42)</code> → <code>"42"</code></td></tr>
+          <tr><td><code>num(x)</code></td><td>Converts a value to a number</td><td><code>num("42")</code> → <code>42</code></td></tr>
+          <tr><td><code>clock()</code></td><td>Current time in seconds</td><td><code>clock()</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================================================= CONDITIONALS -->
+    <section class="doc-section" id="conditionals">
+      <h2>7. Conditionals — if / elif / else</h2>
+      <pre><code>let age = 20;
+
+if (age &lt; 13) {
+    print("child");
+} elif (age &lt; 20) {
+    print("teenager");
+} else {
+    print("adult");
+}
+# adult</code></pre>
+
+      <p><code>elif</code> can repeat as many times as you need, and <code>else</code> is optional:</p>
+      <pre><code>let grade = 85;
+
+if (grade &gt;= 90) {
+    print("A");
+} elif (grade &gt;= 80) {
+    print("B");
+} elif (grade &gt;= 70) {
+    print("C");
+} else {
+    print("F");
+}
+# B</code></pre>
+
+      <p>A minimal <code>if</code> with no <code>else</code>:</p>
+      <pre><code>let x = 5;
+if (x &gt; 0) {
+    print("positive");
+}</code></pre>
+    </section>
+
+    <!-- ================================================= LOOPS -->
+    <section class="doc-section" id="loops">
+      <h2>8. Loops — while</h2>
+      <p>Lang currently has one loop construct: <code>while</code>. It repeats a block as long as its condition is <code>true</code>.</p>
+
+      <h3>Basic counting loop</h3>
+      <pre><code>let i = 0;
+while (i &lt; 5) {
+    print(i);
+    i = i + 1;
+}
+# 0
+# 1
+# 2
+# 3
+# 4</code></pre>
+
+      <h3>Counting down</h3>
+      <pre><code>let i = 10;
+while (i &gt; 0) {
+    print(i);
+    i = i - 1;
+}
+print("Liftoff!");</code></pre>
+
+      <h3>Loop with a condition inside</h3>
+      <pre><code>let i = 0;
+while (i &lt; 10) {
+    if (i % 2 == 0) {
+        print(i);
+    }
+    i = i + 1;
+}
+# prints 0, 2, 4, 6, 8</code></pre>
+
+      <h3>Nested loops (multiplication table)</h3>
+      <pre><code>let i = 1;
+while (i &lt;= 3) {
+    let j = 1;
+    while (j &lt;= 3) {
+        print(i, "x", j, "=", i * j);
+        j = j + 1;
+    }
+    i = i + 1;
+}</code></pre>
+
+      <h3>Accumulator pattern (sum of 1 to 10)</h3>
+      <pre><code>let total = 0;
+let i = 1;
+while (i &lt;= 10) {
+    total = total + i;
+    i = i + 1;
+}
+print(total);   # 55</code></pre>
+    </section>
+
+    <!-- ================================================= FUNCTIONS -->
+    <section class="doc-section" id="functions">
+      <h2>9. Functions</h2>
+      <p>Define a function with <code>func</code>, call it like you'd expect, return a value with <code>return</code>.</p>
+      <pre><code>func add(a, b) {
+    return a + b;
+}
+
+print(add(3, 4));   # 7</code></pre>
+
+      <h3>No return value</h3>
+      <p>A function with no <code>return</code> implicitly returns <code>nil</code>.</p>
+      <pre><code>func greet(name) {
+    print("Hello, " + name + "!");
+}
+
+greet("Alice");   # Hello, Alice!</code></pre>
+
+      <h3>No parameters</h3>
+      <pre><code>func say_hi() {
+    print("Hi there!");
+}
+
+say_hi();</code></pre>
+
+      <h3>Recursion — factorial</h3>
+      <pre><code>func factorial(n) {
+    if (n &lt;= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+print(factorial(5));   # 120</code></pre>
+
+      <h3>Recursion — Fibonacci</h3>
+      <pre><code>func fib(n) {
+    if (n &lt; 2) {
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+
+let i = 0;
+while (i &lt; 10) {
+    print(fib(i));
+    i = i + 1;
+}</code></pre>
+
+      <h3>Early return</h3>
+      <pre><code>func is_even(n) {
+    if (n % 2 == 0) {
+        return true;
+    }
+    return false;
+}
+
+print(is_even(4));   # true
+print(is_even(7));   # false</code></pre>
+    </section>
+
+    <!-- ================================================= CLOSURES -->
+    <section class="doc-section" id="closures">
+      <h2>10. Closures</h2>
+      <p>A function defined inside another function "remembers" the variables from where
+        it was created, even after the outer function has finished running.</p>
+      <pre><code>func make_counter() {
+    let count = 0;
+    func increment() {
+        count = count + 1;
+        return count;
+    }
+    return increment;
+}
+
+let counter = make_counter();
+print(counter());   # 1
+print(counter());   # 2
+print(counter());   # 3</code></pre>
+
+      <p>Each call to <code>make_counter()</code> creates a brand-new, independent counter:</p>
+      <pre><code>let counter_a = make_counter();
+let counter_b = make_counter();
+
+print(counter_a());   # 1
+print(counter_a());   # 2
+print(counter_b());   # 1   (independent of counter_a)</code></pre>
+    </section>
+
+    <!-- ================================================= SCOPE -->
+    <section class="doc-section" id="scope">
+      <h2>11. Scope</h2>
+      <p>Variables declared inside <code>{ }</code> only exist inside that block. A variable
+        inside a block can "shadow" (temporarily hide) a variable of the same name from an
+        outer scope.</p>
+      <pre><code>let x = "outer";
+{
+    let x = "inner";
+    print(x);   # inner
+}
+print(x);       # outer</code></pre>
+    </section>
+
+    <!-- ================================================= EXAMPLES -->
+    <section class="doc-section" id="examples">
+      <h2>12. Full example programs</h2>
+
+      <h3>FizzBuzz</h3>
+      <pre><code>let i = 1;
+while (i &lt;= 30) {
+    if (i % 15 == 0) {
+        print("FizzBuzz");
+    } elif (i % 3 == 0) {
+        print("Fizz");
+    } elif (i % 5 == 0) {
+        print("Buzz");
+    } else {
+        print(i);
+    }
+    i = i + 1;
+}</code></pre>
+
+      <h3>Check if a number is prime</h3>
+      <pre><code>func is_prime(n) {
+    if (n &lt; 2) {
+        return false;
+    }
+    let i = 2;
+    while (i * i &lt;= n) {
+        if (n % i == 0) {
+            return false;
+        }
+        i = i + 1;
+    }
+    return true;
+}
+
+let num = 1;
+while (num &lt;= 20) {
+    if (is_prime(num)) {
+        print(num, "is prime");
+    }
+    num = num + 1;
+}</code></pre>
+
+      <h3>Celsius to Fahrenheit</h3>
+      <pre><code>func celsius_to_fahrenheit(c) {
+    return c * 9 / 5 + 32;
+}
+
+print(celsius_to_fahrenheit(0));     # 32
+print(celsius_to_fahrenheit(100));   # 212
+print(celsius_to_fahrenheit(37));    # 98.6</code></pre>
+
+      <h3>Greatest common divisor (Euclid's algorithm)</h3>
+      <pre><code>func gcd(a, b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+print(gcd(48, 18));   # 6</code></pre>
+
+      <h3>Guess comparison</h3>
+      <pre><code>func check_guess(guess, answer) {
+    if (guess == answer) {
+        print("Correct!");
+    } elif (guess &lt; answer) {
+        print("Too low.");
+    } else {
+        print("Too high.");
+    }
+}
+
+check_guess(7, 10);   # Too low.
+check_guess(15, 10);  # Too high.
+check_guess(10, 10);  # Correct!</code></pre>
+    </section>
+
+    <!-- ================================================= ERRORS -->
+    <section class="doc-section" id="errors">
+      <h2>13. Common errors &amp; what they mean</h2>
+      <table class="doc-table">
+        <thead><tr><th>Error</th><th>What it means</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td><code>Undefined variable 'x'.</code></td><td>You used a variable before declaring it</td><td>Add <code>let x = ...;</code> first</td></tr>
+          <tr><td><code>Expected ';' after expression.</code></td><td>You forgot a semicolon</td><td>Add <code>;</code> at the end of the line</td></tr>
+          <tr><td><code>Expected '}' after block.</code></td><td>A <code>{</code> was never closed</td><td>Check your braces match up</td></tr>
+          <tr><td><code>Division by zero.</code></td><td>You divided by <code>0</code></td><td>Guard with an <code>if</code> before dividing</td></tr>
+          <tr><td><code>Operand must be a number.</code></td><td>You tried math on a non-number</td><td>Check your variable's type</td></tr>
+          <tr><td><code>Can only call functions.</code></td><td>You tried to "call" something that isn't a function</td><td>Check spelling / that it's a <code>func</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ================================================= KEYWORDS -->
+    <section class="doc-section" id="keywords">
+      <h2>14. Keyword reference</h2>
+      <table class="doc-table">
+        <thead><tr><th>Keyword</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>let</code></td><td>Declare a variable</td></tr>
+          <tr><td><code>func</code></td><td>Declare a function</td></tr>
+          <tr><td><code>if</code> / <code>elif</code> / <code>else</code></td><td>Conditionals</td></tr>
+          <tr><td><code>while</code></td><td>Loop</td></tr>
+          <tr><td><code>return</code></td><td>Return a value from a function</td></tr>
+          <tr><td><code>true</code> / <code>false</code></td><td>Boolean literals</td></tr>
+          <tr><td><code>nil</code></td><td>"Nothing" / empty value</td></tr>
+          <tr><td><code>and</code> / <code>or</code> / <code>not</code></td><td>Logical operators</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        These keyword spellings are defined in one place — <code>lang/lexer.py</code> — so
+        the whole syntax can be renamed later without touching anything else in the codebase.
+      </div>
+    </section>
+
+    <!-- ================================================= NOT SUPPORTED -->
+    <section class="doc-section" id="not-supported">
+      <h2>15. Not yet supported</h2>
+      <p>Lang is an early, hand-built language — these are known gaps, not bugs:</p>
+      <ul>
+        <li>No lists / arrays</li>
+        <li>No <code>for</code> loop (only <code>while</code>)</li>
+        <li>No string indexing (<code>"hello"[0]</code> doesn't work)</li>
+        <li>No modules / imports</li>
+        <li>No classes / objects</li>
+      </ul>
+    </section>
+
+    <!-- ================================================= CHEAT SHEET -->
+    <section class="doc-section" id="cheatsheet">
+      <h2>16. Cheat sheet</h2>
+      <pre><code>let x = 10;                    # variable
+x = 20;                        # reassignment
+
+if (x &gt; 0) { }                 # conditional
+elif (x == 0) { }
+else { }
+
+while (x &gt; 0) { }              # loop
+
+func name(a, b) {              # function
+    return a + b;
+}
+
+# comment
+
+true, false, nil               # literals
+and, or, not                   # logic
++ - * / %                      # arithmetic
+== != &lt; &gt; &lt;= &gt;=              # comparison
+
+print(a, b, c);                # output
+len(x); str(x); num(x); clock();</code></pre>
+    </section>
+
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-logo">Project Lang</div>
+      <p class="footer-tag">A small language, built from scratch, for anyone who wants
+        to see how the pieces fit together.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Project</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="docs.html">Documentation</a></li>
+          <li><a href="downloads/project-lang.zip">Download</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="https://github.com/Subhadeeppaulv/Project_Lang" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/Subhadeeppaulv/Project_Lang/issues" target="_blank" rel="noopener">Report an issue</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    © 2026 Subhadeep Paul. Released under the MIT License.<br>
+    Built by Subhadeep Paul, with development assistance from Claude (Anthropic).
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
